@@ -1,5 +1,4 @@
 import React from 'react'
-import { GiH2O } from 'react-icons/gi'
 
 const Authors = () => {
   const[authors, setAuthors] = useState(authorsData)
