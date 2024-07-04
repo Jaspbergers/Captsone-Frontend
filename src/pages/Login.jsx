@@ -2,13 +2,10 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const Login = () => {
-  const [userData, setUserData] = useState({
-    name: "",
-    password: ""
-  })
+  const userData = [{name: "", password: ""}]
 
   const changeInputHandler = (event) => {
-    setUserData(prevState => {
+    userData(prevState => {
       return{...prevState, [event.target.name]: event.target.value}
     });
   }
@@ -31,4 +28,4 @@ const Login = () => {
   )
 }
 
-export default Register
+export default Login

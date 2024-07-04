@@ -1,7 +1,10 @@
-import React from 'react'
+import React, {useState} from 'react'
+import { Link } from 'react-router-dom'
+
 
 const Authors = () => {
-  const[authors, setAuthors] = useState(authorsData)
+  //const[authors, setAuthors] = useState(authorsData)
+   const authors = [{name: "Test Author", posts: []}]
 
   return (
     <section className="authors">

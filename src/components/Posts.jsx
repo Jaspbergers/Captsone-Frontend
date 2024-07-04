@@ -8,7 +8,7 @@ const Posts = () => {
 
     useEffect(() => {
         const getPosts = () => {
-            axios.get('http://127.0.0.1:5000/blogposts')
+            axios.get('https://capstone-backend-ydz5.onrender.com/blogposts')
             .then(response => {
                 console.log("axios response: ", response)
                 setPosts(response.data)
@@ -16,14 +16,15 @@ const Posts = () => {
         }
         getPosts()
     }, [])
-    console.log("component state: ", posts)
+    
+
     return (
         <section className="posts">
             <div className="container posts_container">
                 {
                     posts ? 
                     posts.map(({ id, title, category, content, author, published }) =>
-                            <PostItem key={id} title={title} category={category} content={content} author={author} published={published} />)
+                            <PostItem key={id} postId={id} title={title} category={category} content={content} author={author} published={published} />)
                     :
                     null
 

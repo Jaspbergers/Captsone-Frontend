@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import PostItem from '../components/PostItem'
 
 const CategoryPosts = () => {
   const [posts, setPosts] = useState(false)

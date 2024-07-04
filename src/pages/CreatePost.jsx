@@ -1,12 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
+import axios from 'axios'
 
 const CreatePost = () => {
-  const [title, setPost] = setState('')
-  const [category, setCategory] =useState('Random')
+  const [title, setTitle] = useState('')
+  const [category, setCategory] = useState('')
   const [content, setContent] = useState('')
-  const [author, setAuthor] = useState('Anonymous')
+  const [author, setAuthor] = useState('')
+  //const title = [""]
+  //const category = [""]
+  //const content = [""]
+  //const author = [""]
 
   const modules= {
     toolbar: [
@@ -27,12 +32,26 @@ const CreatePost = () => {
   
   const postCategories = ["Art", "Games", "Life", "Music", "Random", "Science", "Technology", "Writing"]
 
-  axios.post('http://127.0.0.1:5000', {title: '', category: '', content: '', author: '',
-  })
-    .then(response => {console.log('Response:', response.data);
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    axios.post('https://capstone-backend-ydz5.onrender.com/blogpost/add_new', 
+      {title: title, category: category, content: content, author: '',})
+      .then(response => {
+        console.log('Response:', response.data);
+        setTitle('')
+        setContent('')
+        setCategory('')
+      })
+      .catch(error => {console.error('Error:', error);
+      });
+  }
+
+  const handleChange = (value) => {
+    setContent(prevValue => {
+      return value
     })
-    .catch(error => {console.error('Error:', error);
-    });
+  }
+
   
   return (
     <section className="create-post">
@@ -48,8 +67,8 @@ const CreatePost = () => {
               postCategories.map(cat => <option key={cat}>{cat}</option>)
             }
           </select>
-          <ReactQuill modules={modules} formats={formats} value={content} onChange={setContent}/>
-          <button type="submit" className="btn primary">Create</button>
+          <ReactQuill modules={modules} formats={formats} value={content} onChange={value => handleChange(value)}/>
+          <button type="submit" className="btn primary" onClick={handleSubmit}>Create</button>
         </form>
       </div>
     </section>

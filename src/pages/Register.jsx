@@ -2,15 +2,15 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const Register = () => {
-  const [userData, setUserData] = useState({
+  const userData = [{
     name: "",
     email: "",
     password: "",
     confirmPassword: "",
-  })
+  }]
 
   const changeInputHandler = (event) => {
-    setUserData(prevState => {
+    userData(prevState => {
       return{...prevState, [event.target.name]: event.target.value}
     });
   }
